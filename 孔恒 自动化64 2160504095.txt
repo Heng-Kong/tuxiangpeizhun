@@ -1,0 +1,12 @@
+close all;%清除图形窗口
+clear all;%清除MARLAB软件工作内存中的变量
+clc;%清除命令窗口显示内容
+cpselect('Image B.jpg','Image A.jpg');%建立可视化图形标点窗口
+figure1=imread('Image B.jpg');%导入图片Image B.jpg
+figure2=imread('Image A.jpg');%导入图片Image A.jpg
+picture=imtransform(figure1,tform);%将在图片figure1中标注的点生成的矩阵乘T变换矩阵
+subplot(1,2,1),imshow(picture);%显示变换后的图片
+subplot(1,2,2),imshow(figure2);%显示配准后的图片
+movingPoints
+fixedPoints
+tform=cp2tform(movingPoints,fixedPoints,'affine')%求T变换矩阵
